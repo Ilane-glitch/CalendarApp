@@ -1,9 +1,13 @@
 package com.dev.calendarapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -29,5 +33,15 @@ public class NotesActivity extends AppCompatActivity {
         MenuInflater inflateur = getMenuInflater();
         inflateur.inflate(R.menu.add_menu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.add){
+            Intent i = new Intent(this,AddNoteActivity.class);
+            startActivity(i);
+            Toast.makeText(this, "Add btn is clicked", Toast.LENGTH_SHORT).show();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
