@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">CalendarApp</string>
     <string name="todo">TODO</string>
+    <string name="notes">Notes</string>
+    <string name="calendar">Calendar</string>
+    <string name="go_to_notes">go to notes</string>
+    <string name="go_to_calendar">go to calendar</string>
 </resources>
