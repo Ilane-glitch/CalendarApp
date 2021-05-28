@@ -83,11 +83,21 @@ public class AddNoteActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.delete){
-            Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "not saved", Toast.LENGTH_SHORT).show();
+            onBackPressed();
         }
         if (item.getItemId() == R.id.save){
+            Note note = new Note(noteTitle.getText().toString(), notesDetails.getText().toString(), todaysDate, currentTime);
+            NotesDatabase db = new NotesDatabase(this);
+            db.addNote(note);
             Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
+            onBackPressed();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
