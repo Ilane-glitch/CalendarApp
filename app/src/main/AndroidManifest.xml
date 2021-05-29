@@ -10,9 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CalendarApp">
 
-        <activity android:name=".Edit"></activity>
-
-        <activity android:name=".AddNoteActivity"></activity>
+        <activity android:name=".Edit" />
+        <activity android:name=".AddNoteActivity" />
 
         <activity
             android:name=".Detail"
@@ -31,8 +30,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".CalendarActivity"></activity>
-        <activity android:name=".NotesActivity"></activity>
+        <activity android:name=".CalendarActivity" />
+        <activity android:name=".NotesActivity" />
     </application>
 
 </manifest>

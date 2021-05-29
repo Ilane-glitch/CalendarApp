@@ -66,11 +66,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             itemView.setOnClickListener(v -> {
                 Log.d("Detail","OnClick Detail");
                 Intent i = new Intent(v.getContext(), Detail.class);
-                Log.d("Detail","New Intent");
                 i.putExtra("ID", notes.get(getAdapterPosition()).getID());
-                Log.d("Detail","Activity Start");
                 v.getContext().startActivity(i);
-                Log.d("Detail","Activity Started");
             });
         }
     }

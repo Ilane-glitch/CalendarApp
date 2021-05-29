@@ -17,16 +17,13 @@ public class CalendarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calender_layout);
 
-        calendarView = (CalendarView) findViewById(R.id.calendarView);
-        myDate = (TextView) findViewById(R.id.myDate);
+        calendarView = findViewById(R.id.calendarView);
+        myDate = findViewById(R.id.myDate);
 
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                //date selectionnée
-                String date = dayOfMonth + "/" + month + "/" + year;
-                myDate.setText(date);
-            }
+        calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
+            //date selectionnée
+            String date = dayOfMonth + "/" + month + "/" + year;
+            myDate.setText(date);
         });
     }
 }
