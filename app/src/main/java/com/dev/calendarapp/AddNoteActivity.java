@@ -28,15 +28,11 @@ public class AddNoteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_note);
-
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setTitle("New note");
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         noteTitle = findViewById(R.id.noteTitle);
         notesDetails = findViewById(R.id.noteDetails);
 
@@ -51,7 +47,6 @@ public class AddNoteActivity extends AppCompatActivity {
                 if (s.length() != 0){
                     getSupportActionBar().setTitle(s);
                 }
-
             }
 
             @Override
@@ -75,8 +70,8 @@ public class AddNoteActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflateur = getMenuInflater();
-        inflateur.inflate(R.menu.save_menu, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.save_menu, menu);
         return true;
     }
 
@@ -87,11 +82,19 @@ public class AddNoteActivity extends AppCompatActivity {
             onBackPressed();
         }
         if (item.getItemId() == R.id.save){
-            Note note = new Note(noteTitle.getText().toString(), notesDetails.getText().toString(), todaysDate, currentTime);
-            NotesDatabase db = new NotesDatabase(this);
-            db.addNote(note);
-            Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
-            onBackPressed();
+            if(noteTitle.getText().length() != 0){
+                Note note = new Note(noteTitle.getText().toString(), notesDetails.getText().toString(), todaysDate, currentTime);
+                NotesDatabase db = new NotesDatabase(this);
+                long id = db.addNote(note);
+                Note check = db.getNote(id);
+                onBackPressed();
+
+                Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                noteTitle.setError("Title Can not be Blank.");
+            }
+
         }
         return super.onOptionsItemSelected(item);
     }
