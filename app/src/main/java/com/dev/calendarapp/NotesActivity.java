@@ -6,7 +6,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Objects;
 
 public class NotesActivity extends AppCompatActivity {
     Toolbar toolbar;
@@ -32,13 +32,12 @@ public class NotesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notes_layout);
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(toolbar);
         noItemText = findViewById(R.id.noItemText);
         notesDatabase = new NotesDatabase(this);
         List<Note> allNotes = notesDatabase.getNotes();
         recyclerView = findViewById(R.id.listOfNotes);
-
+        Objects.requireNonNull(getSupportActionBar()).setTitle("");
         if(allNotes.isEmpty()){
             noItemText.setVisibility(View.VISIBLE);
         }else {

@@ -68,6 +68,7 @@ public class NotesDatabase  extends SQLiteOpenHelper {
 
         if (cursor != null) cursor.moveToFirst(); //replace le pointeur sur le premier rang
 
+        assert cursor != null;
         return new Note (Long.parseLong(cursor.getString(0)), cursor.getString(1), cursor.getString(2),cursor.getString(3), cursor.getString(4));
     }
     public List<Note> getNotes(){

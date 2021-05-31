@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 public class Edit extends AppCompatActivity {
     Toolbar toolbar;
@@ -32,7 +33,7 @@ public class Edit extends AppCompatActivity {
         setContentView(R.layout.activity_edit);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
         Intent i = getIntent();
@@ -47,13 +48,13 @@ public class Edit extends AppCompatActivity {
         nTitle.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                getSupportActionBar().setTitle(title);
+                Objects.requireNonNull(getSupportActionBar()).setTitle(title);
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.length() != 0){
-                    getSupportActionBar().setTitle(s);
+                    Objects.requireNonNull(getSupportActionBar()).setTitle(s);
                 }
             }
 

@@ -2,7 +2,6 @@ package com.dev.calendarapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
@@ -18,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.Objects;
 
 public class Detail extends AppCompatActivity {
     long id;
@@ -36,24 +37,20 @@ public class Detail extends AppCompatActivity {
         id = i.getLongExtra("ID",0);
         NotesDatabase db = new NotesDatabase(this);
         Note note = db.getNote(id);
-        getSupportActionBar().setTitle(note.getTitle());
+        Objects.requireNonNull(getSupportActionBar()).setTitle(note.getTitle());
         TextView details = findViewById(R.id.noteDesc);
         details.setText(note.getContent());
         details.setMovementMethod(new ScrollingMovementMethod());
 
         FloatingActionButton fab = findViewById(R.id.fab);
         Log.d("Detail", "fab F-A-B");
-        fab.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                NotesDatabase db = new NotesDatabase(getApplicationContext());
-                db.deleteNote(id);
-                Toast.makeText(getApplicationContext(),"Note Deleted",Toast.LENGTH_SHORT).show();
-                goToMain();
-            }
+        fab.setOnClickListener(v -> {
+            NotesDatabase db1 = new NotesDatabase(getApplicationContext());
+            db1.deleteNote(id);
+            Toast.makeText(getApplicationContext(),"Note Deleted",Toast.LENGTH_SHORT).show();
+            goToMain();
         });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

@@ -1,24 +1,18 @@
 package com.dev.calendarapp;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.CalendarView;
+import android.widget.TextView;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.CalendarView;
-import android.widget.CompoundButton;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity /*implements View.OnClickListener */{
 
@@ -51,7 +45,7 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
         //Night Mode
         switchCompat = findViewById(R.id.switchCompat);
         sharedPreferences = getSharedPreferences("night", 0);
-        Boolean booleanValue = sharedPreferences.getBoolean("night_mode", true);
+        boolean booleanValue = sharedPreferences.getBoolean("night_mode", true);
 
         if (booleanValue){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
@@ -59,26 +53,23 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
             switchCompat.setButtonDrawable(R.drawable.ic_baseline_wb_sunny_24);
         }
 
-        switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    //Si checked Activation DarkMode
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    switchCompat.setChecked(true);
-                    switchCompat.setButtonDrawable(R.drawable.ic_baseline_wb_sunny_24);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putBoolean("night_mode", true);
-                    editor.commit();
-                }else {
-                    //Sinon LightMode
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    switchCompat.setChecked(false);
-                    switchCompat.setButtonDrawable(R.drawable.ic_baseline_nights_stay_24);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putBoolean("night_mode", false);
-                    editor.commit();
-                }
+        switchCompat.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                //Si checked Activation DarkMode
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                switchCompat.setChecked(true);
+                switchCompat.setButtonDrawable(R.drawable.ic_baseline_wb_sunny_24);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("night_mode", true);
+                editor.apply();
+            }else {
+                //Sinon LightMode
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                switchCompat.setChecked(false);
+                switchCompat.setButtonDrawable(R.drawable.ic_baseline_nights_stay_24);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("night_mode", false);
+                editor.apply();
             }
         });
 

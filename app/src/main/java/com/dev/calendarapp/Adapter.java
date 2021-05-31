@@ -2,14 +2,11 @@ package com.dev.calendarapp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.icu.text.CaseMap;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
+    //class Adapter qui permet d'implementer les interfaces "listener" par defaut -> permet de gagner du code ici ViewHolder
     LayoutInflater inflater;
     List<Note> notes;
 
@@ -38,14 +36,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         String  title    = notes.get(i).getTitle();
         String  date     = notes.get(i).getDate();
         String  time     = notes.get(i).getTime();
-        long    id       = notes.get(i).getID();
         Log.d("date on ", "Date on: "+date);
 
         viewHolder.nTitle.setText(title);
         viewHolder.nDate.setText(date);
         viewHolder.nTime.setText(time);
         viewHolder.nID.setText(String.valueOf(notes.get(i).getID()));
-
     }
 
     @Override

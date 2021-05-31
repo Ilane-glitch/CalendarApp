@@ -1,10 +1,5 @@
 package com.dev.calendarapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,7 +10,12 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import java.util.Calendar;
+import java.util.Objects;
 
 public class AddNoteActivity extends AppCompatActivity {
     Toolbar toolbar;
@@ -29,9 +29,8 @@ public class AddNoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_note);
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("New note");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("New note");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         noteTitle = findViewById(R.id.noteTitle);
         notesDetails = findViewById(R.id.noteDetails);
@@ -45,7 +44,7 @@ public class AddNoteActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.length() != 0){
-                    getSupportActionBar().setTitle(s);
+                    Objects.requireNonNull(getSupportActionBar()).setTitle(s);
                 }
             }
 

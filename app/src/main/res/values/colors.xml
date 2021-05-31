@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="grey">#CCCCCCCC</color>
+    <color name="creamy_black">#645B5B</color>
+    <color name="soft_blue">#4BA5D4</color>
+    <color name="ToolBarColor">@color/purple_700</color>
+
 </resources>
