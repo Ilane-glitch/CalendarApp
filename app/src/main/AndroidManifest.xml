@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".CalendarActivity" />
+        <activity android:name=".OptionActivity" />
         <activity android:name=".NotesActivity" />
     </application>
 

@@ -47,7 +47,6 @@ public class Detail extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Log.d("Detail", "Dedans le onClick");
                 NotesDatabase db = new NotesDatabase(getApplicationContext());
                 db.deleteNote(id);
                 Toast.makeText(getApplicationContext(),"Note Deleted",Toast.LENGTH_SHORT).show();
@@ -84,4 +83,5 @@ public class Detail extends AppCompatActivity {
         Intent i = new Intent(this,MainActivity.class);
         startActivity(i);
     }
+
 }
