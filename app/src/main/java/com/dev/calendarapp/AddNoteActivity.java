@@ -91,7 +91,7 @@ public class AddNoteActivity extends AppCompatActivity {
                 Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
             }
             else {
-                noteTitle.setError("Title Can not be Blank.");
+                noteTitle.setError("Le titre ne peut être vide");
             }
 
         }

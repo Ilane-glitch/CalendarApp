@@ -29,7 +29,7 @@ public class NotesDatabase  extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //CREATE TABLE namtable (id INT PRIMARY KEY, itile TEXT, content TEXT, date TEXT, time TEXT);
+        //CREATE TABLE notestable (id INT PRIMARY KEY, Title TEXT, content TEXT, date TEXT, time TEXT);
         String createDb = "CREATE TABLE "+DATABASE_TABLE+" ("+
                 KEY_ID+" INTEGER PRIMARY KEY,"+
                 KEY_TITLE+" TEXT,"+
